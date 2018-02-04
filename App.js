@@ -7,7 +7,7 @@ import Deck from './components/deck'
 import NewDeck from './components/new-deck'
 import NewQuestion from './components/new-question'
 import Quiz from './components/quiz'
-import * as Notification from './utils/helpers'
+import { setLocalNotification } from './utils/helpers'
 import { purple, white, black } from './utils/colors'
 
 const Tabs = TabNavigator({
@@ -65,6 +65,10 @@ const styles = StyleSheet.create({
 });
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
+  
   render() {
     return (
       <View style={styles.container}>

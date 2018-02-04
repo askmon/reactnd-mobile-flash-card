@@ -2,7 +2,6 @@ import React from 'react'
 import { AsyncStorage } from 'react-native'
 
 export const example = {
-  'Example Deck To Get Started': {
     title: 'Example Deck To Get Started',
     questions: [
       {
@@ -10,13 +9,20 @@ export const example = {
         answer: 'This is an answer'
       }
     ]
-  }
 }
 
-export function addInitialData(data) {
-  return AsyncStorage.setItem('decks', JSON.stringify(data))
-    .then(() => {
-      return getAllDecks()
+export function addInitialData() {
+  return getAllDecks()
+    .then(payload => {
+      return AsyncStorage.setItem('decks',
+        JSON.stringify(Object.assign({}, payload, {
+            [example.title]: {
+              questions: example.questions,
+              title: example.title
+            }
+          })
+        )
+      )
     })
 }
 

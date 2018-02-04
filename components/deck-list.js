@@ -38,7 +38,7 @@ class DeckList extends Component {
 
   componentDidMount() {
     this.mounted = true;
-    api.addInitialData(api.example)
+    api.addInitialData()
       .then(data => this.setState({decks: data}));
   }
 

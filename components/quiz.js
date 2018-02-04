@@ -4,6 +4,7 @@ import * as api from '../utils/api'
 import { NavigationActions } from 'react-navigation'
 import FlipCard from 'react-native-flip-card'
 import { white, blue, black, orange, purple, gray, red } from '../utils/colors'
+import { clearLocalNotification } from '../utils/helpers'
 
 class Quiz extends Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class Quiz extends Component {
   }
 
   componentDidMount() {
+    clearLocalNotification()
     this.props.navigation.state.params.title && (
       api.getDeck(this.props.navigation.state.params.title)
         .then(data => {
