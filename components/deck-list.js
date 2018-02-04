@@ -38,24 +38,24 @@ class DeckList extends Component {
       .then(data => this.setState({decks: data}));
   }
 
-  componentDisUpdate() {
+  componentDidUpdate() {
     api.getAllDecks()
       .then(payload => {
         this.setState({decks: payload, refresh: false})
       })
   }
 
-  renderDeck(obj) {
+  renderDeck(deck) {
     return (
         <TouchableOpacity
           onPress={() => this.props.navigation.navigate(
-            'DeckView',
-            { title: obj.item.title }
+            'Deck',
+            { title: deck.item.title }
           )}
         >
           <View style={styles.deck}>
-            <Text style={styles.titleText}>{obj.item.title}</Text>
-            <Text style={styles.subtitleText}>{`${obj.item.questions.length} cards`}</Text>
+            <Text style={styles.titleText}>{deck.item.title}</Text>
+            <Text style={styles.subtitleText}>{`${deck.item.questions.length} cards`}</Text>
           </View>
         </TouchableOpacity>
     )
