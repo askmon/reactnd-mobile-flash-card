@@ -65,15 +65,14 @@ const styles = StyleSheet.create({
 });
 
 export default class App extends React.Component {
-
-render() {
-  return (
-    <View style={styles.container}>
-      <View style={{height: Constants.statusBarHeight, backgroundColor: black}}>
-        <StatusBar translucent backgroundColor={black} barStyle="light-content"/>
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={{height: Constants.statusBarHeight, backgroundColor: black}}>
+          <StatusBar translucent backgroundColor={black} barStyle="light-content"/>
+        </View>
+        <MainNavigator />
       </View>
-      <MainNavigator />
-    </View>
-  );
-}
+    );
+  }
 }
