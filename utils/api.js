@@ -1,6 +1,18 @@
 import React from 'react'
 import { AsyncStorage } from 'react-native'
 
+export const test = {
+  test: {
+    title: 'test',
+    questions: [
+      {
+        question: 'hudishfidshfiudsf',
+        answer: 'aaaaaa'
+      }
+    ]
+  }
+}
+
 export function addInitialData(data) {
   return AsyncStorage.setItem('decks', JSON.stringify(data))
     .then(() => {
