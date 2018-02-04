@@ -8,19 +8,19 @@ import NewDeck from './components/new-deck'
 import NewQuestion from './components/new-question'
 import Quiz from './components/quiz'
 import * as Notification from './utils/helpers'
-import { purple, white } from './utils/colors'
+import { purple, white, black } from './utils/colors'
 
 const Tabs = TabNavigator({
   DeckList: {
     screen: DeckList,
     navigationOption: {
-      tabBarLabel: 'Deck List'
+      title: 'Deck List'
     }
   },
   AddDeck: {
     screen: NewDeck,
     navigationOption: {
-      tabBarLabel: 'Add Deck'
+      title: 'Add Deck'
     }
   }
 }, {
@@ -69,8 +69,8 @@ export default class App extends React.Component {
 render() {
   return (
     <View style={styles.container}>
-      <View style={{height: Constants.statusBarHeight, backgroundColor: '#000'}}>
-        <StatusBar translucent backgroundColor={'#000'} barStyle="light-content"/>
+      <View style={{height: Constants.statusBarHeight, backgroundColor: black}}>
+        <StatusBar translucent backgroundColor={black} barStyle="light-content"/>
       </View>
       <MainNavigator />
     </View>
