@@ -1,13 +1,13 @@
 import React from 'react'
 import { AsyncStorage } from 'react-native'
 
-export const test = {
-  test: {
-    title: 'test',
+export const example = {
+  'Example Deck To Get Started': {
+    title: 'Example Deck To Get Started',
     questions: [
       {
-        question: 'hudishfidshfiudsf',
-        answer: 'aaaaaa'
+        question: 'This is a question',
+        answer: 'This is an answer'
       }
     ]
   }
@@ -72,6 +72,7 @@ export function getDeck(title) {
         return
       }
       const data = JSON.parse(payload)
+      console.log(data)
       if (!data[title]) {
         return
       }

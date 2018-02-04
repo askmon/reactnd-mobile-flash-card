@@ -11,13 +11,13 @@ import * as Notification from './utils/helpers'
 import { purple, white, black } from './utils/colors'
 
 const Tabs = TabNavigator({
-  DeckList: {
+  List: {
     screen: DeckList,
     navigationOption: {
       title: 'Deck List'
     }
   },
-  AddDeck: {
+  New: {
     screen: NewDeck,
     navigationOption: {
       title: 'Add Deck'
@@ -53,7 +53,7 @@ const MainNavigator = StackNavigator({
   NewQuestion: {
     screen: NewQuestion
   },
-  QuizView: {
+  Quiz: {
     screen: Quiz
   }
 })

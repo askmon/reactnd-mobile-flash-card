@@ -29,8 +29,10 @@ class Deck extends Component {
   componentDidMount() {
     api.getDeck(this.props.navigation.state.params.title)
       .then((data) => {
-        this.setState({cards: data.questions.length})
-      })
+        if(data) {
+          this.setState({cards: data.questions.length})
+        }
+      }).catch(err => console.error(err))
   }
 
   render() {
@@ -49,7 +51,7 @@ class Deck extends Component {
             )}
           >
             <View style={styles.button}>
-              <Text>Start Quiz</Text>
+              <Text>Start a Quiz</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
@@ -58,8 +60,8 @@ class Deck extends Component {
               { title: this.props.navigation.state.params.title }
             )}
           >
-            <View style={[styles.button, {backgroundColor: '#000'}]}>
-              <Text style={{color: '#fff'}}>Add Question</Text>
+            <View style={[styles.button, {backgroundColor: black}]}>
+              <Text style={{color: white}}>Create New Question</Text>
             </View>
           </TouchableOpacity>
         </View>

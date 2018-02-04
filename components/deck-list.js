@@ -38,7 +38,7 @@ class DeckList extends Component {
 
   componentDidMount() {
     this.mounted = true;
-    api.addInitialData(api.test)
+    api.addInitialData(api.example)
       .then(data => this.setState({decks: data}));
   }
 
@@ -49,8 +49,8 @@ class DeckList extends Component {
   componentDidUpdate() {
     if(this.mounted) {
       api.getAllDecks()
-        .then(payload => {
-          this.setState({decks: payload, refresh: false})
+        .then(data => {
+          this.setState({decks: data, refresh: false})
         })
     }
   }
