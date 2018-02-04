@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons'
 import * as api from '../utils/api'
 import { white, blue, black } from '../utils/colors'
 
-class DeckView extends Component {
+class Deck extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -98,4 +98,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default DeckView
+export default Deck

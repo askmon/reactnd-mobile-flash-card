@@ -27,6 +27,9 @@ const styles = StyleSheet.create({
 });
 
 class DeckList extends Component {
+
+  mounted = false;
+
   constructor(props) {
     super(props)
     this.state = { decks: {} }
@@ -34,15 +37,22 @@ class DeckList extends Component {
   }
 
   componentDidMount() {
+    this.mounted = true;
     api.addInitialData(api.test)
       .then(data => this.setState({decks: data}));
   }
 
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
   componentDidUpdate() {
-    api.getAllDecks()
-      .then(payload => {
-        this.setState({decks: payload, refresh: false})
-      })
+    if(this.mounted) {
+      api.getAllDecks()
+        .then(payload => {
+          this.setState({decks: payload, refresh: false})
+        })
+    }
   }
 
   renderDeck(deck) {
