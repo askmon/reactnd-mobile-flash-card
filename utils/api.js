@@ -78,7 +78,6 @@ export function getDeck(title) {
         return
       }
       const data = JSON.parse(payload)
-      console.log(data)
       if (!data[title]) {
         return
       }
