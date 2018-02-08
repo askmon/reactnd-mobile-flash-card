@@ -56,8 +56,20 @@ class NewDeck extends Component {
       return
     }
 
+    const reset = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({
+          routeName: 'Deck',
+          params: {title: data, refresh: true}
+        })
+      ]
+    })
+
     api.addNewDeck(data)
-      .then()
+      .then(() => {
+        this.props.navigation.dispatch(reset)
+      })
   }
 
   render() {

@@ -26,7 +26,6 @@ class Quiz extends Component {
   }
 
   componentDidMount() {
-    clearLocalNotification()
     this.props.navigation.state.params.title && (
       api.getDeck(this.props.navigation.state.params.title)
         .then(data => {
@@ -43,27 +42,27 @@ class Quiz extends Component {
       )
   }
 
-  componentDidUpdate() {
-  }
-
   render() {
     const mainView = (
-        <FlipCard
-          style={{maxHeight: 200, width: 280, borderWidth: 0}}
-          friction={6}
-          perspective={1000}
-          flipHorizontal={true}
-          flipVertical={false}
-          flip={false}
-          clickable={true}
-        >
-          <View style={{flex: 1, justifyContent: 'center', backgroundColor: orange}}>
-            <Text style={styles.cardText}>{this.state.questions[this.state.questionIndex].question}</Text>
-          </View>
-          <View style={{flex: 1, justifyContent: 'center', backgroundColor: purple}}>
-            <Text style={styles.cardText}>{this.state.questions[this.state.questionIndex].answer}</Text>
-          </View>
-        </FlipCard>
+        <View>
+          <Text>Tap the card to show the correct answer!</Text>
+          <FlipCard
+            style={{maxHeight: 200, width: 280, borderWidth: 0}}
+            friction={6}
+            perspective={1000}
+            flipHorizontal={true}
+            flipVertical={false}
+            flip={false}
+            clickable={true}
+          >
+            <View style={{flex: 1, justifyContent: 'center', backgroundColor: orange}}>
+              <Text style={styles.cardText}>{this.state.questions[this.state.questionIndex].question}</Text>
+            </View>
+            <View style={{flex: 1, justifyContent: 'center', backgroundColor: purple}}>
+              <Text style={styles.cardText}>{this.state.questions[this.state.questionIndex].answer}</Text>
+            </View>
+          </FlipCard>
+        </View>
       )
 
     return this.state.showFinalScore
@@ -87,7 +86,7 @@ class Quiz extends Component {
         )
       : (
           <View style={styles.container}>
-            <Text style={{height: 20, marginTop: 15}}>{`${this.state.score}/${this.state.totalScore}`}</Text>
+            <Text style={{height: 20, marginTop: 15}}>{`${this.state.questionIndex}/${this.state.totalScore}`}</Text>
             <View style={[styles.halfView, {flex: 2}]}>
               {mainView}
             </View>
@@ -96,6 +95,9 @@ class Quiz extends Component {
               <TouchableOpacity
                 disabled={this.state.totalScore === 0 ? true : false}
                 onPress={() => {
+                  if(this.state.questionIndex + 1 === this.state.totalScore) {
+                    clearLocalNotification()
+                  }
                   this.setState((state) => {
                     return (state.questionIndex + 1 === state.totalScore)
                     ? {score: state.score + 1, showFinalScore: true}

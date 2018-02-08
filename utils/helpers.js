@@ -5,7 +5,10 @@ const NOTIFICATION_KEY = 'reactnd-mobile-flash-card:notifications'
 
 export function clearLocalNotification () {
   return AsyncStorage.removeItem(NOTIFICATION_KEY)
-    .then(Notifications.cancelAllScheduledNotificationsAsync)
+    .then(() => {
+      await Notifications.cancelAllScheduledNotificationsAsync()
+      setLocalNotification()
+    })
 }
 
 function createNotification () {
